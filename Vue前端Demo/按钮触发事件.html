@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <p>1.通过vue.js调用内置方法</p>
+        <p>2.通过判断框改变属性值，并蹦出form表单</p>
+        <hr>
+    </div>
+    <div id="app">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">反转字符串</button>
+        <p v-if="flag">现在你看到我了</p>
+        <form v-if="flag">
+            <input type="text">
+        </form>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Runoob!',
+                flag: false
+            },
+            methods: {
+                reverseMessage: function() {
+                    this.message = this.message.split('').reverse().join(''),
+                        alert("ok"),
+                        this.flag = confirm("是否填写表格？")
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

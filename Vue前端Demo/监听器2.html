@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="message1">
+        <input type="text" v-model="message2">
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message1: 0,
+                message2: 0
+            },
+
+            methods: {
+
+            },
+
+            computed: {
+
+            },
+
+            watch: {
+                message1: function(val) {
+                    this.message1 = val;
+                    this.message2 = this.message1 * 2;
+                },
+                message2: function(val) {
+                    this.message2 = val;
+                    this.message1 = this.message2 / 2;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

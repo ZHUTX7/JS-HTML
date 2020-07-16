@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:style="{ color: activeColor, fontSize: fontSize}">菜鸟教程</div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                activeColor: 'green',
+                fontSize: '50px'
+            }
+        })
+    </script>
+</body>
+
+</html>
+
+
+<!--        第一种，关联styleObject
+    <!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 </title>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <div v-bind:style="styleObject">菜鸟教程</div>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    styleObject: {
+      color: 'green',
+      fontSize: '30px'
+    }
+  }
+})
+</script>
+</body>
+</html>
+-->
+
+
+<!----------
+第二种 , 关联多种styleObject
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例</title>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <div v-bind:style="[baseStyles, overridingStyles]">菜鸟教程</div>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    baseStyles: {
+      color: 'green',
+      fontSize: '30px'
+    },
+	overridingStyles: {
+      'font-weight': 'bold'
+    }
+  }
+})
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+-->

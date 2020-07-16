@@ -14,8 +14,13 @@
         <input type="button" title="开启摄像头" value="开启摄像头" onclick="getMedia()" />
         <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
         <canvas id="canvas" width="500px" height="500px"></canvas>
-        <button id="snap" onclick="takePhoto()">拍照</button>
-        <button onClick="exportCanvasAsPNG('canvas','p1');" type="button">下载图片</button>
+        <button id="snap" onclick="takePhoto()">识别</button>
+
+        <input type="text" id="userName" placeholder="输入联系方式" />
+        <input type="text" id="phone" placeholder="输入电话号码" />
+
+
+
         <script>
             //获得video摄像头区域
             let video = document.getElementById("video");
@@ -47,6 +52,10 @@
             }
 
             function takePhoto() {
+                var userName = document.getElementById('userName').value;
+                var phone = document.getElementById('phone').value;
+                alert(userName);
+                alert(phone);
                 //获得Canvas对象
                 var imgURL;
                 let canvas = document.getElementById("canvas");
@@ -68,52 +77,21 @@
                 console.log(imgURL);
                 //如果此处不进行转换，会导致+号丢失
                 imgURL = encodeURIComponent(imgURL);
-                //window.open(url);
-
-                $.ajax({
-                    url: "/GetFaceImgURL",
-                    type: "POST",
-                    dataType: "JSON",
-                    contentType: "application/json; charset=utf-8",
-                    data: {
-                        'imgURL': imgURL,
-                    },
-                    async: false,
-                    success: function(data) {
-                        alert(data.loginResult);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) { //controller返回的data空或其他提示不存在
-                        alert("人脸识别认证失败！");
+                alert("识别ing");
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        alert("识别成功 !");
                     }
 
-                });
-
-
-                // var xhttp = new XMLHttpRequest();
-                // xhttp.onreadystatechange = function() {
-                //     if (this.readyState == 4 && this.status == 200) {
-                //         alert("识别成功!");
-                //         location.href = '/index';
-                //     }
-                // };
-                // xhttp.open("POST", "/GetFaceImgURL", true);
-                // //通过AJax发送图片Base64
-
-                // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                // xhttp.send("imgURL=" + imgURL);
-
-                // return image;
-
+                };
+                xhttp.open("POST", "http://localhost:8080/AuthManIn", true);
+                //通过AJax发送图片Base64
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("imgURL=" + imgURL);
+                xhttp.send("userName" + userName);
+                xhttp.send("phone" + phone);
             }
-            //下载方法 ：传入canva标签的ID ， 图像保存后的文件名
-
-
-
-            //通过AJax发送图片编码
-            //function sendPhotoBase64(img_url) {
-            //img_url = imgURL;
-
-            // }
         </script>
     </body>
 
